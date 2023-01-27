@@ -7,9 +7,14 @@ function App() {
         $400<span>.00</span>
       </h1>
       <form>
-        <input type='text' placeholder={'New Purchase'} />
-        <input type='datetime-local' />
-        <input type='text' placeholder={'Description'} />
+        <div className='basic'>
+          <input type='text' placeholder={'New Purchase'} />
+          <input type='datetime-local' />
+        </div>
+        <div className='description'>
+          <input type='text' placeholder={'Description'} />
+        </div>
+        <button type='submit'>Add New Transaction</button>
       </form>
     </main>
   );
