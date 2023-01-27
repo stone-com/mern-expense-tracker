@@ -6,16 +6,48 @@ function App() {
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
 
-  const addNewTransaction = () => {
-    
-  }
+  const addNewTransaction = async (e) => {
+    e.preventDefault();
+    const url = process.env.REACT_APP_API_URL + '/transaction';
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, description, datetime }),
+      });
+      const json = await response.json();
+      console.log('result', json);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // const addNewTransaction = async (e) => {
+  //   e.preventDefault();
+  //   const url = process.env.REACT_APP_API_URL + '/transaction';
+
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ name, description, datetime }),
+  //   }).then((response) => {
+  //     response.json().then((json) => {
+  //       console.log('result', json);
+  //     });
+  //   });
+  // };
 
   return (
     <main>
       <h1>
         $400<span>.00</span>
       </h1>
-      <form onSubmit={addnewTransaction}>
+      <form onSubmit={addNewTransaction}>
         <div className='basic'>
           <input
             type='text'
