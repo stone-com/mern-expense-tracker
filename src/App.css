@@ -52,13 +52,18 @@ form button {
 }
 
 div.transactions {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 div.transaction {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
+  border-top: 1px solid;
+}
+
+div.transaction:first-child {
+  border-top: 0;
 }
 
 div.transaction div.name {
