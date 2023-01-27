@@ -5,12 +5,17 @@ function App() {
   const [name, setName] = useState('');
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
+
+  const addNewTransaction = () => {
+    
+  }
+
   return (
     <main>
       <h1>
         $400<span>.00</span>
       </h1>
-      <form>
+      <form onSubmit={addnewTransaction}>
         <div className='basic'>
           <input
             type='text'
