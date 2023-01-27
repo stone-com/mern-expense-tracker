@@ -50,3 +50,37 @@ form button {
   background-color: #ddd;
   cursor: pointer;
 }
+
+div.transactions {
+  margin-top: 5px;
+}
+
+div.transaction {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+div.transaction div.name {
+  font-size: 1.2rem;
+}
+
+div.transaction div.description {
+  font-size: 0.9rem;
+  color: #999;
+}
+div.right {
+  text-align: right;
+}
+div.price.green {
+  color: lightgreen;
+}
+
+div.price.red {
+  color: red;
+}
+
+div.transaction div.datetime {
+  font-size: 0.9rem;
+  color: #999;
+}
