@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useFetchTransactions from './hooks/useFetchTransactions';
 import Transaction from './components/Transaction';
 
@@ -9,8 +9,12 @@ function App() {
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('expense');
+  const [transactions, setTransactions] = useState([]);
 
   const { data } = useFetchTransactions();
+  useEffect(() => {
+    setTransactions(data);
+  }, [data]);
 
   const addNewTransaction = async (e) => {
     e.preventDefault();
@@ -30,6 +34,7 @@ function App() {
       setPrice('');
       setDatetime('');
       setDescription('');
+      setTransactions((prev) => [...transactions, json]);
     } catch (err) {
       console.error(err);
     }
@@ -39,6 +44,7 @@ function App() {
     <main>
       <h1>
         $400<span>.00</span>
+        <p>{transactions.length} total transactions</p>
       </h1>
       <form onSubmit={addNewTransaction}>
         <div className='basic'>
@@ -78,6 +84,16 @@ function App() {
         <button type='submit'>Add New Transaction</button>
       </form>
       <div className='transactions'>
+        {transactions.map((transaction) => (
+          <Transaction
+            name={transaction.name}
+            price={transaction.price}
+            description={transaction.description}
+            datetime={transaction.datetime}
+            type={transaction.type}
+          />
+        ))}
+
         <div className='transaction'>
           <div className='left'>
             <div className='name'>New Samsung TV</div>

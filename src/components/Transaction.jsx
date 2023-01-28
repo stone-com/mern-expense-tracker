@@ -1,13 +1,13 @@
-const Transaction = () => {
+const Transaction = ({ name, datetime, type, description, price }) => {
   return (
     <div className='transaction'>
       <div className='left'>
-        <div className='name'>New Samsung TV</div>
-        <div className='description'>It was time for a new TV</div>
+        <div className='name'>{name}</div>
+        <div className='description'>{description}</div>
       </div>
       <div className='right'>
-        <div className='price red'>-$500</div>
-        <div className='datetime'>2022-12-18 13:45</div>
+        <div className='price red'>{price}</div>
+        <div className='datetime'>{datetime}</div>
       </div>
     </div>
   );
