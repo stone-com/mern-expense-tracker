@@ -1,4 +1,6 @@
 const Transaction = ({ name, datetime, type, description, price }) => {
+  const date = new Date(datetime).toLocaleString('en-us', );
+  console.log(date);
   return (
     <div className='transaction'>
       <div className='left'>
@@ -7,7 +9,7 @@ const Transaction = ({ name, datetime, type, description, price }) => {
       </div>
       <div className='right'>
         <div className='price red'>{price}</div>
-        <div className='datetime'>{datetime}</div>
+        <div className='datetime'>{date}</div>
       </div>
     </div>
   );
