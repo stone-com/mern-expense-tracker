@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import useFetchTransactions from './hooks/useFetchTransactions';
 
 function App() {
   const [name, setName] = useState('');
@@ -7,6 +8,8 @@ function App() {
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('expense');
+
+  const { data } = useFetchTransactions();
 
   const addNewTransaction = async (e) => {
     e.preventDefault();
@@ -18,7 +21,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, description, datetime }),
+        body: JSON.stringify({ name, description, datetime, price, type }),
       });
       const json = await response.json();
       console.log('result', json);
