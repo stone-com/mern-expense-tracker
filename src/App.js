@@ -6,6 +6,7 @@ function App() {
   const [price, setPrice] = useState('');
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
+  const [type, setType] = useState('expense');
 
   const addNewTransaction = async (e) => {
     e.preventDefault();
@@ -56,6 +57,19 @@ function App() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+        </div>
+        <div className='basic'>
+          <input
+            type='text'
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder={'Amount'}
+          />
+          Type:
+          <select onChange={(e) => setType(e.target.value)}>
+            <option value='expense'>Expense</option>
+            <option value='income'>Income</option>
+          </select>
         </div>
         <button type='submit'>Add New Transaction</button>
       </form>

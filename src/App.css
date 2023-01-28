@@ -39,6 +39,11 @@ form div.basic {
   display: flex;
   gap: 5px;
   margin-bottom: 5px;
+  margin-top: 5px;
+}
+form div.basic select {
+  border: 0;
+  border-radius: 5px;
 }
 
 form button {
