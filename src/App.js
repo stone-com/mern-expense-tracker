@@ -25,23 +25,6 @@ function App() {
     }
   };
 
-  // const addNewTransaction = async (e) => {
-  //   e.preventDefault();
-  //   const url = process.env.REACT_APP_API_URL + '/transaction';
-
-  //   fetch(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ name, description, datetime }),
-  //   }).then((response) => {
-  //     response.json().then((json) => {
-  //       console.log('result', json);
-  //     });
-  //   });
-  // };
-
   return (
     <main>
       <h1>
