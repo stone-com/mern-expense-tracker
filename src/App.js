@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 function App() {
   const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
 
@@ -20,6 +21,10 @@ function App() {
       });
       const json = await response.json();
       console.log('result', json);
+      setName('');
+      setPrice('');
+      setDatetime('');
+      setDescription('');
     } catch (err) {
       console.error(err);
     }
