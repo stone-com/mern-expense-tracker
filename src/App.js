@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import useFetchTransactions from './hooks/useFetchTransactions';
+
 import Transaction from './components/Transaction';
 
 function App() {
@@ -12,9 +13,20 @@ function App() {
   const [transactions, setTransactions] = useState([]);
 
   const { data } = useFetchTransactions();
+
   useEffect(() => {
     setTransactions(data);
   }, [data]);
+
+  let income = 0;
+  let expenses = 0;
+  for (const transaction of transactions) {
+    if (transaction.type === 'expense') {
+      expenses += transaction.price;
+    } else if (transaction.type === 'income') {
+      income += transaction.price;
+    }
+  }
 
   const addNewTransaction = async (e) => {
     e.preventDefault();
@@ -34,7 +46,7 @@ function App() {
       setPrice('');
       setDatetime('');
       setDescription('');
-      setTransactions((prev) => [...transactions, json]);
+      setTransactions((prev) => [...prev, json]);
     } catch (err) {
       console.error(err);
     }
@@ -43,8 +55,10 @@ function App() {
   return (
     <main>
       <h1>
-        $400<span>.00</span>
+        Total Gross ${income - expenses}
         <p>{transactions.length} total transactions</p>
+        <p>Total Income: {'$' + income}</p>
+        <p>Total Expenses: {'$' + expenses}</p>
       </h1>
       <form onSubmit={addNewTransaction}>
         <div className='basic'>
@@ -84,46 +98,22 @@ function App() {
         <button type='submit'>Add New Transaction</button>
       </form>
       <div className='transactions'>
-        {transactions.map((transaction) => (
-          <Transaction
-            name={transaction.name}
-            price={transaction.price}
-            description={transaction.description}
-            datetime={transaction.datetime}
-            type={transaction.type}
-          />
-        ))}
-
-        <div className='transaction'>
-          <div className='left'>
-            <div className='name'>New Samsung TV</div>
-            <div className='description'>It was time for a new TV</div>
-          </div>
-          <div className='right'>
-            <div className='price red'>-$500</div>
-            <div className='datetime'>2022-12-18 13:45</div>
-          </div>
-        </div>
-        <div className='transaction'>
-          <div className='left'>
-            <div className='name'>Got Paid</div>
-            <div className='description'>It was time for a new TV</div>
-          </div>
-          <div className='right'>
-            <div className='price green'>+$1000</div>
-            <div className='datetime'>2022-12-18 13:45</div>
-          </div>
-        </div>
-        <div className='transaction'>
-          <div className='left'>
-            <div className='name'>New Iphone</div>
-            <div className='description'>It was time for a new TV</div>
-          </div>
-          <div className='right'>
-            <div className='price red'>-$700</div>
-            <div className='datetime'>2022-12-18 13:45</div>
-          </div>
-        </div>
+        {transactions.length ? (
+          transactions
+            .map((transaction) => (
+              <Transaction
+                key={transaction._id}
+                name={transaction.name}
+                price={transaction.price}
+                description={transaction.description}
+                datetime={transaction.datetime}
+                type={transaction.type}
+              />
+            ))
+            .reverse()
+        ) : (
+          <p className='NoTransactions'>No Transactions Yet</p>
+        )}
       </div>
     </main>
   );

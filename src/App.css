@@ -96,3 +96,8 @@ div.transaction div.datetime {
   font-size: 0.9rem;
   color: #999;
 }
+
+.NoTransactions {
+  color: red;
+  text-align: center;
+}
