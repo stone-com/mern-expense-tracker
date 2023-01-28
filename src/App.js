@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import useFetchTransactions from './hooks/useFetchTransactions';
+import Transaction from './components/Transaction';
 
 function App() {
   const [name, setName] = useState('');
